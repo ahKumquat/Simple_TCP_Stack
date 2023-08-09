@@ -11,9 +11,16 @@ class Writer;
 class ByteStream
 {
 protected:
-  uint64_t capacity_;
+	std::deque<std::string> queue_;			
+	std::deque<std::string_view> view_queue_;
+	uint64_t capacity_size_;
+	uint64_t written_size_;
+	uint64_t read_size_;
+	uint64_t buffered_size_;
+	bool is_closed_;
+ 	bool error_{};	
   // Please add any additional state to the ByteStream here, and not to the Writer and Reader interfaces.
-
+ 	
 public:
   explicit ByteStream( uint64_t capacity );
 
